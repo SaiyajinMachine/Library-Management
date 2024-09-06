@@ -26,7 +26,7 @@ To run this project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/TaBByR/LibraryInventory.git
+   git clone https://github.com/SaiyajinMachine/Library-Management.git
    ```
 2. Go into the cloned directory:
    ```bash
