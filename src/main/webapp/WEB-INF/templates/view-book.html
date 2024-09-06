@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #ff3333;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff3333;
+        }
+
+        h3 {
+            color: #ff6666;
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        a {
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2 th:text="${book.title}"></h2>
+    <h3 th:text="${book.author}"></h3>
+    <p th:text="'ISBN: ' + ${book.isbn}"></p>
+    <p th:text="'Published Date: ' + ${book.published_date}"></p>
+    <p th:text="'Price: ' + ${book.price}"></p>
+</div>
+
+<div>
+    <a th:href="@{'/books'}">Back to Book List</a>
+    <a th:href="@{'/books/' + ${book.id} + '/edit'}">Edit Book</a>
+</div>
+</body>
+</html>

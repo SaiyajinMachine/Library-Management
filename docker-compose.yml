@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  webapp:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      - DB_URL=jdbc:mysql://mysql:3306/library?allowPublicKeyRetrieval=true&useSSL=false
+      - DB_USER=root
+      - DB_PASSWORD=root
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: library
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./src/main/resources/db/test-data.sql:/docker-entrypoint-initdb.d/test-data.sql
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:

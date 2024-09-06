@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
+
+        form {
+            max-width: 600px;
+            width: 100%; /* Ensure the form uses full width up to max-width */
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #ff3333;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            background-color: #333;
+            color: #eee;
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        input[type="text"]::placeholder,
+        input[type="number"]::placeholder,
+        input[type="date"]::placeholder {
+            color: #888;
+        }
+
+        .help-block {
+            color: #ff6666;
+            font-size: 0.9em;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1em;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: #ff3333;
+            border: 1px solid #cc0000;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc0000;
+            border-color: #990000;
+        }
+
+        .btn-danger {
+            background-color: #000;
+            border: 1px solid #444;
+        }
+
+        .btn-danger:hover {
+            background-color: #333;
+            border-color: #222;
+        }
+    </style>
+</head>
+<body>
+<form th:object="${book}" th:action="@{/books/save}" method="POST">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Enter book's title">
+        <span class="help-block" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error messages</span>
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" id="author" th:field="*{author}" placeholder="Enter author's name">
+        <span class="help-block" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error messages</span>
+    </div>
+    <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input type="text" class="form-control" id="isbn" th:field="*{isbn}" placeholder="Enter book's ISBN">
+        <span class="help-block" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN error messages</span>
+    </div>
+    <div class="form-group">
+        <label for="published_date">Published Date</label>
+        <input type="date" class="form-control" id="published_date" th:field="*{published_date}" placeholder="Enter book's published date">
+        <span class="help-block" th:if="${#fields.hasErrors('published_date')}" th:errors="*{published_date}">Published date error messages</span>
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" th:field="*{price}" placeholder="Enter book's price" step=".01">
+        <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price error messages</span>
+    </div>
+    <button type="submit" class="btn btn-primary" name="action" value="save">Submit</button>
+    <button type="button" class="btn btn-danger" name="action" value="cancel">Cancel</button>
+</form>
+</body>
+</html>

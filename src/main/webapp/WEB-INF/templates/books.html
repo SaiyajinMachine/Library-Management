@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #222;
+            color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background-color: #333;
+            color: #ff3333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        tr:hover {
+            background-color: #444;
+        }
+
+        a {
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #ff3333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .action-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .action-link a {
+            color: #ff3333;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .action-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/action :: action"></div>
+
+<div class="container" th:switch="${not #lists.isEmpty(books)}">
+    <div th:case="true">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Published Date</th>
+                <th>Price</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.published_date}"></td>
+                <td th:text="${book.price}"></td>
+                <td><a th:href="@{'/books/' + ${book.id}}">View</a></td>
+                <td><a th:href="@{'/books/' + ${book.id} + '/edit'}">Edit</a></td>
+                <td><a th:href="@{'/books/' + ${book.id} + '/delete'}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div th:case="false">
+        <h1>No Books</h1>
+    </div>
+</div>
+
+<div class="action-link">
+    <a th:href="@{'/books/add'}">Add Book</a>
+</div>
+</body>
+</html>
