@@ -6,7 +6,7 @@ Welcome to **Library Inventory Management Web App**, a fullstack, end-to-end Mav
 
 This project showcases a comprehensive approach to handling book inventories with modern web technologies and containerization.
 
-## 🚀 Technologies Used
+## 🛠️ Technologies Used
 
 - **Java**: The primary programming language for backend development.
 - **Maven**: Build automation tool used to manage project dependencies.
